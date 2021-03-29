@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(value: any[], searchValue: string, ...args: unknown[]): any[] {
+  transform(value: any[], searchValue?: string, ...args: unknown[]): any[] {
     if (!searchValue) { return value; }
     return value.filter(item => {
       const keys = Object.keys(item);
