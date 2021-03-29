@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -27,13 +29,36 @@ export class AppComponent {
     }
   ];
 
-  searchValue = '';
+  newExpenseForm = new FormGroup({
+    description: new FormControl('test', [Validators.required]),
+    amount: new FormControl(2151, [Validators.required, Validators.min(0)]),
+    date: new FormControl('', [Validators.required])
+  });
 
+  get amount(): AbstractControl {
+    return this.newExpenseForm.get('amount')!;
+  }
+
+  get date(): AbstractControl {
+    return this.newExpenseForm.get('date')!;
+  }
+  get description(): AbstractControl {
+    return this.newExpenseForm.get('description')!;
+  }
+
+  searchValue = '';
   searchChanged(e: Event): void {
     this.searchValue = (e.target as HTMLInputElement).value;
   }
 
   deleteExpense(e: any): void {
     e.deleted = true;
+  }
+
+  addExpense(): void {
+    console.log('handling submit of form');
+    this.newExpenseForm.markAllAsTouched();
+    if (this.newExpenseForm.invalid) { return; }
+    this.expenses.push(this.newExpenseForm.value);
   }
 }
