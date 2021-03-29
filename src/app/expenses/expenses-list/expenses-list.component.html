@@ -3,6 +3,7 @@
   placeholder="Type to search..."
   class="form-control"
   [formControl]="search"
+  focus
 />
 
 <table class="table">
@@ -19,6 +20,7 @@
       *ngFor="let expense of expenses | search: search.value"
       [hidden]="expense.deleted"
       [class.expensive]="expense.amount > 1000"
+      [zoom]
     >
       <td>{{ expense.description }}</td>
       <td>{{ expense.amount | currency: "EUR" }}</td>

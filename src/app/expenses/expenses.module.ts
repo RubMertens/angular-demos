@@ -1,3 +1,4 @@
+import { CustomDirectivesModule } from './../custom-directives/custom-directives.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomPipesModule } from './../custom-pipes/custom-pipes.module';
 import { NgModule } from '@angular/core';
@@ -12,7 +13,8 @@ import { ExpenseFormComponent } from './expense-form/expense-form.component';
   imports: [
     CommonModule,
     CustomPipesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CustomDirectivesModule
   ],
   exports: [ExpensesListComponent, ExpenseFormComponent]
 })
