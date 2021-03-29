@@ -1,0 +1,12 @@
+.box {
+  background-color: rebeccapurple;
+
+  width: 100px;
+  height: 100px;
+
+  position: absolute;
+}
+
+.dragging {
+  box-shadow: 4px 4px 4px lightgray;
+}

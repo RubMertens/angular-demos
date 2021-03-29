@@ -12,13 +12,15 @@ import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import localeBe from '@angular/common/locales/nl-BE';
 import { OnlyMeToggleComponent } from './only-me-toggle/only-me-toggle.component';
+import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 
 registerLocaleData(localeBe);
 
 @NgModule({
   declarations: [
     AppComponent,
-    OnlyMeToggleComponent],
+    OnlyMeToggleComponent,
+    DragAndDropComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
