@@ -34,7 +34,7 @@
       >
         <td>{{ expense.description }}</td>
         <td>{{ expense.amount | currency: "EUR" }}</td>
-        <td>{{ expense.date | date: "yyyy/MM/dd" }}</td>
+        <td>{{ expense.date | date: "shortDate" }}</td>
         <td>
           <button (click)="deleteExpense(expense)" class="btn btn-danger">
             delete

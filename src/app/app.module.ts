@@ -1,10 +1,15 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchPipe } from './search.pipe';
+
+import { registerLocaleData } from '@angular/common';
+import localeBe from '@angular/common/locales/nl-BE';
+
+registerLocaleData(localeBe);
 
 @NgModule({
   declarations: [
@@ -16,7 +21,9 @@ import { SearchPipe } from './search.pipe';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'nl-BE' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
