@@ -1,0 +1,28 @@
+<section class="container mt-5">
+  <button (click)="switchToggle()">Toggle:{{ toggle }}</button>
+
+  <div *appMyUnless="toggle">This is toggle with myUnless</div>
+  <div *ngIf="toggle">This is toggled with ngIf</div>
+  <ng-template [ngIf]="toggle">
+    <div>This is my deconstructed ngIf....</div>
+  </ng-template>
+  <ng-template [appMyUnless]="toggle">
+    <div>This is my deconstructed 'unless'</div>
+  </ng-template>
+  <hr />
+
+  <button (click)="addToList()">Add to list</button>
+
+  <ul>
+    <li *appMyFor="let item of list; index as index">
+      {{ index }} - {{ item }}
+    </li>
+  </ul>
+
+  <hr />
+  <ul>
+    <ng-template appMyFor [appMyForOf]="list" let-item let-index="index">
+      <li>{{ index }} - {{ item }}</li>
+    </ng-template>
+  </ul>
+</section>

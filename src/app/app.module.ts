@@ -1,3 +1,4 @@
+import { CustomDirectivesModule } from './custom-directives/custom-directives.module';
 import { ExpenseService, FakeExpenseService } from './expense.service';
 import { ExpensesModule } from './expenses/expenses.module';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -21,7 +22,8 @@ registerLocaleData(localeBe);
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ExpensesModule
+    ExpensesModule,
+    CustomDirectivesModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },
