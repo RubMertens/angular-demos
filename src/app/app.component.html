@@ -4,7 +4,10 @@
 <hr />
 <main class="container">
   <section>
-    <app-expenses-list [expenses]="expenses"></app-expenses-list>
+    <app-expenses-list
+      (search)="searchExpenses($event)"
+      [expenses]="expenses | async"
+    ></app-expenses-list>
   </section>
   <section>
     <app-expense-form (addExpense)="addExpense($event)"></app-expense-form>

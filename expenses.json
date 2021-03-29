@@ -1,0 +1,25 @@
+{
+  "expenses": [
+    {
+      "id": 1,
+      "description": "new Iphone",
+      "amount": 1010,
+      "date": "2020/01/01",
+      "deleted": false
+    },
+    {
+      "id": 2,
+      "description": "Hotel bill",
+      "amount": 85,
+      "date": "2020/01/01",
+      "deleted": false
+    },
+    {
+      "id": 3,
+      "description": "Coffee",
+      "amount": 2.5,
+      "date": "2020/01/01",
+      "deleted": false
+    }
+  ]
+}

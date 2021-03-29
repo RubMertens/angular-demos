@@ -3,12 +3,14 @@ import { ExpensesModule } from './expenses/expenses.module';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { registerLocaleData } from '@angular/common';
 import localeBe from '@angular/common/locales/nl-BE';
+import { isMainThread } from 'node:worker_threads';
 
 registerLocaleData(localeBe);
 
@@ -21,7 +23,8 @@ registerLocaleData(localeBe);
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ExpensesModule
+    ExpensesModule,
+    HttpClientModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },

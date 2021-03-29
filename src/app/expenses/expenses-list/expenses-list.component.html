@@ -2,7 +2,7 @@
   type="search"
   placeholder="Type to search..."
   class="form-control"
-  [formControl]="search"
+  [formControl]="searchControl"
   focus
 />
 
@@ -15,9 +15,9 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="expenses">
     <tr
-      *ngFor="let expense of expenses | search: search.value"
+      *ngFor="let expense of expenses"
       [hidden]="expense.deleted"
       [class.expensive]="expense.amount > 1000"
       [zoom]

@@ -33,7 +33,10 @@ export class ExpenseFormComponent implements OnInit {
     this.newExpenseForm.markAllAsTouched();
     if (this.newExpenseForm.invalid) { return; }
     this.addExpense.emit(
-      this.newExpenseForm.value
+      {
+        ...this.newExpenseForm.value,
+        id: 0
+      }
     );
   }
 

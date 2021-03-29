@@ -1,47 +1,47 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { shareReplay, subscribeOn, tap } from "rxjs/operators";
 import { Expense } from './Expense';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService {
-  private expenses: Expense[] = [
-    {
-      id: 1,
-      description: 'new Iphone',
-      amount: 1010,
-      date: new Date(2020, 1, 1),
-      deleted: false
-    },
-    {
-      id: 2,
-      description: 'Hotel bill',
-      amount: 85,
-      date: new Date(2020, 3, 12),
-      deleted: false
-    },
-    {
-      id: 3,
-      description: 'Coffee',
-      amount: 2.50,
-      date: new Date(2021, 4, 9),
-      deleted: false
-    }
-  ];
+  private expenses$ = new ReplaySubject<Expense[]>();
 
-  all(): Expense[] {
-    return this.expenses;
+  private readonly api: string = "http://localhost:3000/expenses";
+  constructor(private http: HttpClient) {
+    this.getAll();
+  }
+
+  private getAll() {
+    this.http.get<Expense[]>(this.api)
+      .subscribe(all => {
+        return this.expenses$.next(all);
+      });
+  }
+
+  all(): Observable<Expense[]> {
+    return this.expenses$.asObservable();
   }
 
   byId(id: number): Expense | undefined {
-    return this.expenses.find(e => e.id === id);
+    // return this.expenses.find(e => e.id === id);
+    return undefined;
   }
 
-  add(e: Expense): void {
-    this.expenses.push(e);
+  add(e: Expense): Observable<unknown> {
+    return this.http.post(this.api, e)
+      .pipe(tap(ret => { this.getAll() }))
   }
 
-  constructor() { }
+  search(value: string): Observable<Expense[]> {
+    const params = new HttpParams();
+    params.set("q", value);
+    console.log("searching for", value, params);
+    return this.http.get<Expense[]>(`${this.api}?q=${value}`)
+  }
 }
 
 
@@ -52,10 +52,10 @@ export class FakeExpenseService implements Partial<ExpenseService> {
     { id: 2, description: 'fake three', amount: 999, date: new Date() },
   ];
   all() {
-    return this.expenses;
+    return of(this.expenses);
   }
   add(e: Expense) {
-
+    return of([])
   }
   byId(id: number) {
     return this.expenses.find(e => e.id == id);

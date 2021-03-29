@@ -1,6 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { Expense } from './../../Expense';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-expenses-list',
@@ -10,11 +11,20 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ExpensesListComponent implements OnInit {
 
   @Input()
-  expenses: Expense[] = [];
+  expenses: Expense[] | null = [];
 
-  search = new FormControl('');
+  @Output()
+  search = new EventEmitter<string>();
 
-  constructor() { }
+  searchControl = new FormControl('');
+
+  // searchValue$ = this.search
+  //   .valueChanges
+  //   .pipe(debounceTime(500))
+
+  constructor() {
+    this.searchControl.valueChanges.subscribe(v => this.search.emit(v));
+  }
 
   ngOnInit(): void {
   }
