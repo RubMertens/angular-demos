@@ -27,6 +27,12 @@ export class AppComponent {
     }
   ];
 
+  searchValue = '';
+
+  searchChanged(e: Event): void {
+    this.searchValue = (e.target as HTMLInputElement).value;
+  }
+
   deleteExpense(e: any): void {
     e.deleted = true;
   }

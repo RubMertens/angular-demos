@@ -1,8 +1,22 @@
-<header>
+<header class="container">
   <h1>expenses app</h1>
 </header>
-
+<hr />
 <main class="container">
+  <!-- <input
+    type="search"
+    placeholder="Type to search..."
+    class="form-control"
+    [value]="searchValue"
+    (input)="searchChanged($event)"
+  /> -->
+  <input
+    type="search"
+    placeholder="Type to search..."
+    class="form-control"
+    [(ngModel)]="searchValue"
+  />
+
   <table class="table">
     <thead>
       <tr>
@@ -14,13 +28,13 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let expense of expenses"
+        *ngFor="let expense of expenses | search: searchValue"
         [hidden]="expense.deleted"
         [class.expensive]="expense.amount > 1000"
       >
         <td>{{ expense.description }}</td>
-        <td>{{ expense.amount }}</td>
-        <td>{{ expense.date }}</td>
+        <td>{{ expense.amount | currency: "EUR" }}</td>
+        <td>{{ expense.date | date: "yyyy/MM/dd" }}</td>
         <td>
           <button (click)="deleteExpense(expense)" class="btn btn-danger">
             delete
@@ -29,4 +43,9 @@
       </tr>
     </tbody>
   </table>
+  <pre>
+    <code>
+      {{ searchValue | json }}
+    </code>
+  </pre>
 </main>
