@@ -47,8 +47,12 @@
   <section>
     <form [formGroup]="newExpenseForm" (ngSubmit)="addExpense()">
       <div class="form-group">
-        <label for="">Description</label>
-        <textarea formControlName="description" class="form-control"></textarea>
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          class="form-control"
+        ></textarea>
         <div
           class="text-danger"
           *ngIf="description.touched && description.invalid"
@@ -57,8 +61,13 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="">Amount</label>
-        <input formControlName="amount" type="number" class="form-control" />
+        <label for="amount">Amount</label>
+        <input
+          id="amount"
+          formControlName="amount"
+          type="number"
+          class="form-control"
+        />
         <div
           *ngIf="amount.touched && amount.invalid && amount.hasError('min')"
           class="text-danger"
@@ -73,13 +82,18 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="">Date</label>
-        <input formControlName="date" type="date" class="form-control" />
+        <label for="date">Date</label>
+        <input
+          id="date"
+          formControlName="date"
+          type="date"
+          class="form-control"
+        />
         <div class="text-danger" *ngIf="date.touched && date.invalid">
           Date is required
         </div>
       </div>
-      <button class="btn btn-primary">Add expense</button>
+      <button type="submit" class="btn btn-primary">Add expense</button>
     </form>
   </section>
 

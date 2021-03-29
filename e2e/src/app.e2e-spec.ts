@@ -8,10 +8,22 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
+  it("should display 3 items", async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('expsenses-app app is running!');
-  });
+    const count = await page.expenses.count();
+    expect(count).toBe(3);
+  })
+
+  it("should add to form when entered", async () => {
+    await page.navigateTo();
+    await page.description.sendKeys("test");
+    await page.amount.sendKeys("100");
+    await page.date.sendKeys("01/01/2020");
+    await page.submit.click();
+
+    const count = await page.expenses.count();
+    expect(count).toBe(4);
+  })
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
