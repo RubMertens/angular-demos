@@ -46,9 +46,9 @@ export class AppComponent {
     return this.newExpenseForm.get('description')!;
   }
 
-  searchValue = '';
+  searchValue = new FormControl('');
   searchChanged(e: Event): void {
-    this.searchValue = (e.target as HTMLInputElement).value;
+    // this.searchValue = (e.target as HTMLInputElement).value;
   }
 
   deleteExpense(e: any): void {

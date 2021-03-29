@@ -14,7 +14,7 @@
     type="search"
     placeholder="Type to search..."
     class="form-control"
-    [(ngModel)]="searchValue"
+    [formControl]="searchValue"
   />
   <section>
     <table class="table">
@@ -28,7 +28,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let expense of expenses | search: searchValue"
+          *ngFor="let expense of expenses | search: searchValue.value"
           [hidden]="expense.deleted"
           [class.expensive]="expense.amount > 1000"
         >
