@@ -1,0 +1,33 @@
+<input
+  type="search"
+  placeholder="Type to search..."
+  class="form-control"
+  [formControl]="search"
+/>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>description</th>
+      <th>amount</th>
+      <th>date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let expense of expenses | search: search.value"
+      [hidden]="expense.deleted"
+      [class.expensive]="expense.amount > 1000"
+    >
+      <td>{{ expense.description }}</td>
+      <td>{{ expense.amount | currency: "EUR" }}</td>
+      <td>{{ expense.date | date: "shortDate" }}</td>
+      <td>
+        <button (click)="deleteExpense(expense)" class="btn btn-danger">
+          delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

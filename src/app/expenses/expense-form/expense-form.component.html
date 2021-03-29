@@ -1,0 +1,42 @@
+<form [formGroup]="newExpenseForm" (ngSubmit)="submitHandler()">
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      class="form-control"
+    ></textarea>
+    <div class="text-danger" *ngIf="description.touched && description.invalid">
+      Description cannot be empty
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="amount">Amount</label>
+    <input
+      id="amount"
+      formControlName="amount"
+      type="number"
+      class="form-control"
+    />
+    <div
+      *ngIf="amount.touched && amount.invalid && amount.hasError('min')"
+      class="text-danger"
+    >
+      Your amount cannot be negative
+    </div>
+    <div
+      class="text-danger"
+      *ngIf="amount.touched && amount.hasError('required')"
+    >
+      Amount cannot be empty
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input id="date" formControlName="date" type="date" class="form-control" />
+    <div class="text-danger" *ngIf="date.touched && date.invalid">
+      Date is required
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Add expense</button>
+</form>

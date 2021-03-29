@@ -1,10 +1,11 @@
+import { ExpenseService, FakeExpenseService } from './expense.service';
+import { ExpensesModule } from './expenses/expenses.module';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchPipe } from './search.pipe';
 
 import { registerLocaleData } from '@angular/common';
 import localeBe from '@angular/common/locales/nl-BE';
@@ -13,17 +14,18 @@ registerLocaleData(localeBe);
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SearchPipe
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ExpensesModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'nl-BE' }
+    { provide: LOCALE_ID, useValue: 'nl-BE' },
+    // { provide: ExpenseService, useClass: FakeExpenseService }
   ],
   bootstrap: [AppComponent]
 })

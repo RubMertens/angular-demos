@@ -14,13 +14,11 @@ export class SearchPipe implements PipeTransform {
         .length > 0;
       return anyPropContainsSearch;
     });
-
   }
 
-  private keyContains(obj: any, key: string, searchValue: string) {
+  private keyContains(obj: any, key: string, searchValue: string): boolean {
     return (obj[key].toString() as string)
       .toLowerCase()
       .includes(searchValue.toLowerCase());
   }
-
 }
