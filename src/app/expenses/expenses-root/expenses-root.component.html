@@ -1,0 +1,9 @@
+<section>
+  <app-expenses-list
+    (search)="searchExpenses($event)"
+    [expenses]="expenses | async"
+  ></app-expenses-list>
+</section>
+<section>
+  <app-expense-form (addExpense)="addExpense($event)"></app-expense-form>
+</section>

@@ -1,7 +1,8 @@
+import { ExpensesModule } from './expenses.module';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { shareReplay, subscribeOn, tap } from "rxjs/operators";
+import { tap } from 'rxjs/operators';
 import { Expense } from './Expense';
 
 @Injectable({

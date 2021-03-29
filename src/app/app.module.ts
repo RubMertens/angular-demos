@@ -1,5 +1,5 @@
 import { OnlyMeInterceptor } from './only-me.interceptor';
-import { ExpenseService, FakeExpenseService } from './expense.service';
+import { ExpenseService, FakeExpenseService } from './expenses/expense.service';
 import { ExpensesModule } from './expenses/expenses.module';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,19 +12,20 @@ import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import localeBe from '@angular/common/locales/nl-BE';
 import { OnlyMeToggleComponent } from './only-me-toggle/only-me-toggle.component';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 
 registerLocaleData(localeBe);
 
 @NgModule({
   declarations: [
     AppComponent,
-    OnlyMeToggleComponent],
+    OnlyMeToggleComponent,
+    NotAuthorizedComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ExpensesModule,
     HttpClientModule
   ],
   providers: [
